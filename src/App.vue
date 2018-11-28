@@ -1,28 +1,34 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <sorted-table :values="values">
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: left; width: 10rem;"><sort-link name="id">ID</sort-link></th>
+                    <th scope="col" style="text-align: left; width: 10rem;"><sort-link name="name">Name</sort-link></th>
+                    <th scope="col" style="text-align: left; width: 10rem;"><sort-link name="description">Description</sort-link></th>
+                </tr>
+            </thead>
+            <tbody slot="body" slot-scope="sort">
+                <tr v-for="value in sort.values" :key="value.id">
+                    <td>{{ value.id }}</td>
+                    <td>{{ value.name }}</td>
+                    <td>{{ value.description }}</td>
+                </tr>
+            </tbody>
+        </sorted-table>
+    </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
-  name: "app",
-  components: {
-    HelloWorld
+  name: "App",
+  data: function() {
+    return {
+      values: [
+        { name: "test2", id: 2, description: "test 2 foo bar", icon: "icon" },
+        { name: "test1", id: 1, description: "test 1 foo bar", icon: "icon" }
+      ]
+    };
   }
 };
 </script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

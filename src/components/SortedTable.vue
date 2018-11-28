@@ -1,0 +1,98 @@
+<template>
+    <table class="table">
+        <slot></slot>
+        <slot name="head"></slot>
+        <slot name="body" :values="sortedValues"></slot>
+        <slot name="foot"></slot>
+    </table>
+</template>
+
+<script>
+export default {
+  name: "SortedTable",
+  props: {
+    values: {
+      type: Array,
+      required: true
+    },
+    dir: {
+      type: String,
+      default: "asc"
+    },
+    sort: {
+      type: String,
+      default: "id"
+    },
+    ascIcon: {
+      type: String,
+      default: ""
+    },
+    descIcon: {
+      type: String,
+      default: ""
+    }
+  },
+  data: function() {
+    return {
+      currentDir: this.dir,
+      currentSort: this.sort
+    };
+  },
+  computed: {
+    sortedValues: function() {
+      return this.values.slice().sort(
+        function(a, b) {
+          let modifier = 1;
+          if (this.currentDir === "desc") {
+            modifier = -1;
+          }
+          if (
+            this.$_.get(a, this.currentSort) < this.$_.get(b, this.currentSort)
+          ) {
+            return -1 * modifier;
+          }
+          if (
+            this.$_.get(a, this.currentSort) > this.$_.get(b, this.currentSort)
+          ) {
+            return 1 * modifier;
+          }
+          return 0;
+        }.bind(this)
+      );
+    },
+    asc: function() {
+      if (this.ascIcon == "") {
+        return this.$sortedTable.ascIcon;
+      } else {
+        return this.ascIcon;
+      }
+    },
+    desc: function() {
+      if (this.descIcon == "") {
+        return this.$sortedTable.descIcon;
+      } else {
+        return this.descIcon;
+      }
+    }
+  },
+  methods: {
+    getCurrentSort: function() {
+      return this.currentSort;
+    },
+    getSortIcon: function() {
+      if (this.currentDir === "asc") {
+        return this.asc;
+      } else {
+        return this.desc;
+      }
+    },
+    sortBy: function(s) {
+      //if s == current sort, reverse
+      if (s === this.currentSort) {
+        this.currentDir = this.currentDir === "asc" ? "desc" : "asc";
+      }
+      this.currentSort = s;
+    }
+  }
+};
+</script>
