@@ -2,9 +2,15 @@
   "name": "vue-sorted-table",
   "description": "A Vue.js plugin to sort table content.",
   "author": "Daniel Bernhardt",
-  "license" : "MIT",
-  "keywords": ["vue.js", "plugin", "table", "sorted", "component"],
-  "version": "0.1.0",
+  "license": "MIT",
+  "keywords": [
+    "vue.js",
+    "plugin",
+    "table",
+    "sorted",
+    "component"
+  ],
+  "version": "0.1.1",
   "main": "./dist/vue-sorted-table.js",
   "repository": "git@github.com:BernhardtD/vue-sorted-table.git",
   "private": false,
