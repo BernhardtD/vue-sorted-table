@@ -1,10 +1,10 @@
 <template>
-    <table class="table">
-        <slot></slot>
-        <slot name="head"></slot>
-        <slot name="body" :values="sortedValues"></slot>
-        <slot name="foot"></slot>
-    </table>
+  <table class="table">
+    <slot></slot>
+    <slot name="head"></slot>
+    <slot name="body" :values="sortedValues"></slot>
+    <slot name="foot"></slot>
+  </table>
 </template>
 
 <script>
@@ -39,6 +39,13 @@ export default {
     };
   },
   computed: {
+    get: function() {
+      if (this.$_) {
+        return this.$_.get;
+      } else {
+        return this.getValue;
+      }
+    },
     sortedValues: function() {
       return this.values.slice().sort(
         function(a, b) {
@@ -46,14 +53,10 @@ export default {
           if (this.currentDir === "desc") {
             modifier = -1;
           }
-          if (
-            this.$_.get(a, this.currentSort) < this.$_.get(b, this.currentSort)
-          ) {
+          if (this.get(a, this.currentSort) < this.get(b, this.currentSort)) {
             return -1 * modifier;
           }
-          if (
-            this.$_.get(a, this.currentSort) > this.$_.get(b, this.currentSort)
-          ) {
+          if (this.get(a, this.currentSort) > this.get(b, this.currentSort)) {
             return 1 * modifier;
           }
           return 0;
@@ -76,6 +79,9 @@ export default {
     }
   },
   methods: {
+    getValue: function(array, key) {
+      return array[key];
+    },
     getCurrentSort: function() {
       return this.currentSort;
     },

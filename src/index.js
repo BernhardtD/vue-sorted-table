@@ -9,15 +9,24 @@ const SortedTablePlugin = {
     if (config) {
       Vue.prototype.$sortedTable = config;
     } else {
-      Vue.prototype.$sortedTable = {
-        ascIcon: "<span> ▲</span>",
-        descIcon: "<span> ▼</span>"
-      };
+      Vue.prototype.$sortedTable = {};
+    }
+
+    if (!Vue.prototype.$sortedTable.ascIcon) {
+      Vue.prototype.$sortedTable.ascIcon = "<span> ▲</span>";
+    }
+
+    if (!Vue.prototype.$sortedTable.descIcon) {
+      Vue.prototype.$sortedTable.descIcon = "<span> ▼</span>";
+    }
+
+    if (!Vue.prototype.$_ && typeof window !== "undefined" && window._) {
+      Vue.prototype.$_ = window._;
     }
   }
 };
 
-//Automatic installation if Vue has been added to the global scope.
+// Automatic installation if Vue has been added to the global scope.
 if (typeof window !== "undefined" && window.Vue) {
   window.Vue.use(SortedTablePlugin);
 }

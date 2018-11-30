@@ -1,8 +1,11 @@
 <template>
-    <a href="#" @click.prevent="$parent.sortBy(name)">
-        <slot></slot>
-        <span v-if="$parent.getCurrentSort() == name" v-html="$parent.getSortIcon()"></span>
-    </a>
+  <a href="#" @click.prevent="$parent.sortBy(name)">
+    <slot></slot>
+    <span
+      v-if="$parent.getCurrentSort() == name"
+      v-html="$parent.getSortIcon()"
+    ></span>
+  </a>
 </template>
 
 <script>
