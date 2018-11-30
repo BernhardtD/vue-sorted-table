@@ -11,7 +11,7 @@
     "component"
   ],
   "version": "0.1.2",
-  "main": "./dist/vue-sorted-table.js",
+  "main": "./dist/vue-sorted-table.common.js",
   "repository": "git@github.com:BernhardtD/vue-sorted-table.git",
   "private": false,
   "scripts": {
