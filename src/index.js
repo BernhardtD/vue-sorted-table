@@ -1,8 +1,8 @@
 import SortedTable from "./components/SortedTable.vue";
 import SortLink from "./components/SortLink.vue";
 
-const plugin = {
-  install: (Vue, config) => {
+const SortedTablePlugin = {
+  install: function(Vue, config) {
     Vue.component(SortedTable.name, SortedTable);
     Vue.component(SortLink.name, SortLink);
 
@@ -17,5 +17,10 @@ const plugin = {
   }
 };
 
-SortedTable.install = plugin.install;
-export default SortedTable;
+//Automatic installation if Vue has been added to the global scope.
+if (typeof window !== "undefined" && window.Vue) {
+  window.Vue.use(SortedTablePlugin);
+}
+
+export default SortedTablePlugin;
+export { SortedTable, SortLink };

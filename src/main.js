@@ -1,10 +1,10 @@
 import Vue from "vue";
-import App from "./App.vue";
 import _ from "lodash";
-import SortedTable from "./plugin";
+import SortedTablePlugin from "./index.js";
+import App from "./App.vue";
 
 Vue.prototype.$_ = _;
-Vue.use(SortedTable, {
+Vue.use(SortedTablePlugin, {
   ascIcon: "<span> up</span>",
   descIcon: "<span> down</span>"
 });

@@ -17,8 +17,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "bundle": "vue-cli-service build --mode production --dest dist --target lib --name vue-sorted-table src/index.js",
     "lint": "vue-cli-service lint"
   },
+  "files": [
+    "dist/vue-sorted-table.*",
+    "src/*",
+    "*.json",
+    "*.js"
+  ],
   "dependencies": {
     "lodash": "^4.17.11",
     "vue": "^2.5.17"
