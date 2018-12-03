@@ -64,7 +64,7 @@ export default {
     };
   }
 };
-´´´
+```
 
 [![Edit vue-sorted-table - basic example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xp37xr4pwo?module=%2Fsrc%2FApp.vue)
 
@@ -76,7 +76,7 @@ Vue.use(SortedTablePlugin, {
   ascIcon: '<i class="material-icons">arrow_drop_up</i>',
   descIcon: '<i class="material-icons">arrow_drop_down</i>'
 });
-´´´
+```
 
 [![Edit vue-sorted-table - advanced example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/71v099zz56)
 
@@ -133,3 +133,5 @@ Property | Required | Default | Description
 name     |yes       |""       |The object key name on which the values will be sorted.
 
 ### Constraint
+Currently, the `SortLink` component expects to be a child of the `SortedTable` component.
+Adding any other component in between will break the sorting capabilities.
