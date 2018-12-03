@@ -10,7 +10,7 @@
             <SortLink name="name">Name</SortLink>
           </th>
           <th scope="col" style="text-align: left; width: 10rem;">
-            <SortLink name="description">Description</SortLink>
+            <SortLink name="hits">Hits</SortLink>
           </th>
         </tr>
       </thead>
@@ -18,7 +18,7 @@
         <tr v-for="value in sort.values" :key="value.id">
           <td>{{ value.id }}</td>
           <td>{{ value.name }}</td>
-          <td>{{ value.description }}</td>
+          <td>{{ value.hits }}</td>
         </tr>
       </tbody>
     </SortedTable>
@@ -31,8 +31,9 @@ export default {
   data: function() {
     return {
       values: [
-        { name: "test2", id: 2, description: "test 2 foo bar", icon: "icon" },
-        { name: "test1", id: 1, description: "test 1 foo bar", icon: "icon" }
+        { name: "Plugin Foo", id: 2, hits: 33 },
+        { name: "Plugin Bar", id: 1, hits: 42 },
+        { name: "Plugin Foo Bar", id: 3, hits: 79 }
       ]
     };
   }

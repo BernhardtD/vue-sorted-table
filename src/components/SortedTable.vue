@@ -13,7 +13,8 @@ export default {
   props: {
     values: {
       type: Array,
-      required: true
+      required: true,
+      default: null
     },
     dir: {
       type: String,
