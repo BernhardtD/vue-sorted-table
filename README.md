@@ -49,9 +49,8 @@ The basic example shows how to use the `SortedTable` and `SortLink` components:
     </SortedTable>
   </div>
 </template>
-```
 
-```javascript
+<script>
 export default {
   name: "App",
   data: function() {
@@ -64,12 +63,42 @@ export default {
     };
   }
 };
+</script>
+```
+
+The `SortedTable` tag requires a `values` property, which is an array of objects which contain the data:
+```html
+<SortedTable :values="values">
+</SortedTable>
+```
+
+The `SortLink` tag adds a link to sort the provided data. In the case the value of `name` property is the current
+sorting, the component adds a sort icon, depending on the actual order (ascending or descending):
+```html
+<SortLink name="id">ID</SortLink>
+```
+
+The sorted data is made accessible as a [scoped slot](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots).
+Therefore the `tbody` tag is served as part of the `body` slot and has the slot scope `sort`:
+```html
+<tbody slot="body" slot-scope="sort">
+</tbody>
+```
+
+Now we can access the slot scope via `sort` and iterate over the sorted values to render the data:
+```html
+<tr v-for="value in sort.values" :key="value.id">
+  <td>{{ value.id }}</td>
+  <td>{{ value.name }}</td>
+  <td>{{ value.hits }}</td>
+</tr>
 ```
 
 [![Edit vue-sorted-table - basic example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xp37xr4pwo?module=%2Fsrc%2FApp.vue)
 
 ### Advanced
-The advanced example shows how to use the plugin configuration to set global sort icons:
+The advanced example is based on the basic example.
+It shows how to use the plugin configuration to set global sort icons:
 
 ```javascript
 Vue.use(SortedTablePlugin, {
@@ -85,7 +114,12 @@ By default, the objects containing the values has to be a flat object.
 To support nested objects (`{ name: "Plugin Foo", user: { id: 1, name: "David Campbell" } }`) the plugin
 uses [lodash](https://lodash.com).
 
-At first, import and register lodash prototype:
+At first, install lodash:
+```bash
+npm install --save lodash
+```
+
+Import lodash and register Vue prototype:
 ```javascript
 import _ from "lodash";
 
@@ -97,7 +131,53 @@ Add sort link using the nested key:
 <SortLink name="user.name">Username</SortLink>
 ```
 
+Extend `v-for` loop to render nested value:
+```html
+<tr v-for="value in sort.values" :key="value.id">
+  <td>{{ value.id }}</td>
+  <td>{{ value.name }}</td>
+  <td>{{ value.hits }}</td>
+  <td>{{ value.user.name }}</td>
+</tr>
+```
+
 [![Edit vue-sorted-table - nested example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/6nljqn2q8r)
+
+### Single File Components
+The `SortedTable` and `SortLink` components can be used without registering the plugin.
+Import the components, e.g. as part of a singe file component:
+```javascript
+import { SortedTable, SortLink } from "vue-sorted-table";
+```
+
+Register components locally:
+```javascript
+export default {
+  name: "App",
+  components: {
+    SortedTable,
+    SortLink
+  },
+  data: function() {
+    return {
+        // ..
+    };
+  }
+};
+```
+
+Add sort icons as property of the `SortedTable` tag:
+```html
+<SortedTable
+  :values="values"
+  ascIcon="<span> ▲</span>"
+  descIcon="<span> ▼</span>"
+>
+  <!-- .. -->
+</SortedTable>
+```
+
+[![Edit vue-sorted-table - component example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/6139y2xo53?module=%2Fsrc%2FApp.vue)
 
 ## Configuration
 The plugin configuration allows to set global sort icons, e.g. [Advanced Example](#Advanced)
@@ -109,7 +189,8 @@ descIcon | Descending sort icon.
 
 ## Components
 ### `SortedTable`
-The `SortedTable` is the main component of the plugin. It is intended to be a replacement of the `<table></table>` tag. So instead using the old table tags, use `<sorted-table></sorted-table>`.
+The `SortedTable` is the main component of the plugin. It is intended to be a replacement of the `<table></table>` tag.
+So instead using the old table tags, use `<SortedTable></SortedTable>`.
 
 #### Properties
 This component has the following properties:
