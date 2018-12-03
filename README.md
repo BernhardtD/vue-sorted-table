@@ -72,8 +72,8 @@ The `SortedTable` tag requires a `values` property, which is an array of objects
 </SortedTable>
 ```
 
-The `SortLink` tag adds a link to sort the provided data. In the case the value of `name` property is the current
-sorting, the component adds a sort icon, depending on the actual order (ascending or descending):
+The `SortLink` tag adds a link to sort the provided data. In the case the `name` property value is the current
+sorting, the component adds a sort icon, depending on the actual order:
 ```html
 <SortLink name="id">ID</SortLink>
 ```
@@ -182,10 +182,10 @@ Add sort icons as property of the `SortedTable` tag:
 ## Configuration
 The plugin configuration allows to set global sort icons, e.g. [Advanced Example](#Advanced)
 
-Option   | Description
----------|----------------------
-ascIcon  | Ascending sort icon.
-descIcon | Descending sort icon.
+Option    | Description
+----------|----------------------
+`ascIcon` | Ascending sort icon.
+`descIcon`| Descending sort icon.
 
 ## Components
 ### `SortedTable`
@@ -195,13 +195,13 @@ So instead using the old table tags, use `<SortedTable></SortedTable>`.
 #### Properties
 This component has the following properties:
 
-Property | Required | Default | Description
----------|----------|---------|--------------------------------------------------------------
-values   |yes       |null     |Array of objects containing the values which should be sorted.
-dir      |no        |"asc"    |Sort direction. Valid values: ("asc"\|"desc")
-sort     |no        |"id"     |Default sorting. Could be any valid object key.
-ascIcon  |no        |""       |Ascending icon. Overwrites default or globally set icon.
-descIcon |no        |""       |Descending icon. Overwrites default or globally set icon.
+Property   | Required | Default | Description
+-----------|----------|---------|--------------------------------------------------------------
+`values`   |yes       |null     |Array of objects containing the values which should be sorted.
+`dir`      |no        |asc      |Sort direction. Valid values: ("asc"\|"desc")
+`sort`     |no        |id       |Default sorting. Could be any valid object key.
+`ascIcon`  |no        |         |Ascending icon. Overwrites default or globally set icon.
+`descIcon` |no        |         |Descending icon. Overwrites default or globally set icon.
 
 ### `SortLink`
 This component adds a link to sort the given values. A sort icon is attached automatically to link.
@@ -211,7 +211,7 @@ This component has the following properties:
 
 Property | Required | Default | Description
 ---------|----------|---------|-------------------------------------------------------
-name     |yes       |""       |The object key name on which the values will be sorted.
+`name`   |yes       |         |The object key name on which the values will be sorted.
 
 ### Constraint
 Currently, the `SortLink` component expects to be a child of the `SortedTable` component.
