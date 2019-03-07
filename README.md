@@ -203,6 +203,14 @@ Property   | Required | Default | Description
 `ascIcon`  |no        |         |Ascending icon. Overwrites default or globally set icon.
 `descIcon` |no        |         |Descending icon. Overwrites default or globally set icon.
 
+#### Events
+This component emits the following event:
+
+- `sort-table`
+  - This event will be emited on each new sort action, e.g. click on sort link.
+  - arg0: sort property name, e.g. id
+  - arg1: sort direction, e.g. asc
+
 ### `SortLink`
 This component adds a link to sort the given values. A sort icon is attached automatically to link.
 

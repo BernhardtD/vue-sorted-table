@@ -99,6 +99,8 @@ export default {
         this.currentDir = this.currentDir === "asc" ? "desc" : "asc";
       }
       this.currentSort = s;
+
+      this.$emit("sort-table", this.currentSort, this.currentDir);
     }
   }
 };
