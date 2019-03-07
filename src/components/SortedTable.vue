@@ -31,6 +31,10 @@ export default {
     descIcon: {
       type: String,
       default: ""
+    },
+    onSort: {
+      type: null,
+      default: null
     }
   },
   data: function() {
@@ -48,21 +52,25 @@ export default {
       }
     },
     sortedValues: function() {
-      return this.values.slice().sort(
-        function(a, b) {
-          let modifier = 1;
-          if (this.currentDir === "desc") {
-            modifier = -1;
-          }
-          if (this.get(a, this.currentSort) < this.get(b, this.currentSort)) {
-            return -1 * modifier;
-          }
-          if (this.get(a, this.currentSort) > this.get(b, this.currentSort)) {
-            return 1 * modifier;
-          }
-          return 0;
-        }.bind(this)
-      );
+      if (this.onSort) {
+        return this.values;
+      } else {
+        return this.values.slice().sort(
+          function(a, b) {
+            let modifier = 1;
+            if (this.currentDir === "desc") {
+              modifier = -1;
+            }
+            if (this.get(a, this.currentSort) < this.get(b, this.currentSort)) {
+              return -1 * modifier;
+            }
+            if (this.get(a, this.currentSort) > this.get(b, this.currentSort)) {
+              return 1 * modifier;
+            }
+            return 0;
+          }.bind(this)
+        );
+      }
     },
     asc: function() {
       if (this.ascIcon == "") {
@@ -101,6 +109,10 @@ export default {
       this.currentSort = s;
 
       this.$emit("sort-table", this.currentSort, this.currentDir);
+
+      if (this.onSort) {
+        this.onSort(this.currentSort, this.currentDir);
+      }
     }
   }
 };

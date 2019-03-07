@@ -202,6 +202,7 @@ Property   | Required | Default | Description
 `sort`     |no        |id       |Default sorting. Could be any valid object key.
 `ascIcon`  |no        |         |Ascending icon. Overwrites default or globally set icon.
 `descIcon` |no        |         |Descending icon. Overwrites default or globally set icon.
+`onSort`   |no        |null     |Alternative function for value sorting.
 
 #### Events
 This component emits the following event:
