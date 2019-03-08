@@ -219,8 +219,8 @@ var global = __webpack_require__("7726");
 var hide = __webpack_require__("32e9");
 var has = __webpack_require__("69a8");
 var SRC = __webpack_require__("ca5a")('src');
+var $toString = __webpack_require__("fa5b");
 var TO_STRING = 'toString';
-var $toString = Function[TO_STRING];
 var TPL = ('' + $toString).split(TO_STRING);
 
 __webpack_require__("8378").inspectSource = function (it) {
@@ -462,7 +462,7 @@ var store = global[SHARED] || (global[SHARED] = {});
 })('versions', []).push({
   version: core.version,
   mode: __webpack_require__("2d00") ? 'pure' : 'global',
-  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 
 
@@ -698,7 +698,7 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 /***/ "8378":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.7' };
+var core = module.exports = { version: '2.6.5' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -1049,6 +1049,14 @@ module.exports = (
 
 /***/ }),
 
+/***/ "fa5b":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("5537")('native-function-to-string', Function.toString);
+
+
+/***/ }),
+
 /***/ "fab2":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1080,12 +1088,12 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"cffca526-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortedTable.vue?vue&type=template&id=454b2953&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('table',{staticClass:"table"},[_vm._t("default"),_vm._t("head"),_vm._t("body",null,{values:_vm.sortedValues}),_vm._t("foot")],2)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortedTable.vue?vue&type=template&id=e336eb94&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('table',{staticClass:"table"},[_vm._t("default"),_vm._t("head"),_vm._t("body",null,{"values":_vm.sortedValues}),_vm._t("foot")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SortedTable.vue?vue&type=template&id=454b2953&
+// CONCATENATED MODULE: ./src/components/SortedTable.vue?vue&type=template&id=e336eb94&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
@@ -1132,6 +1140,10 @@ var es6_array_sort = __webpack_require__("55dd");
     descIcon: {
       type: String,
       default: ""
+    },
+    onSort: {
+      type: null,
+      default: null
     }
   },
   data: function data() {
@@ -1149,23 +1161,27 @@ var es6_array_sort = __webpack_require__("55dd");
       }
     },
     sortedValues: function sortedValues() {
-      return this.values.slice().sort(function (a, b) {
-        var modifier = 1;
+      if (this.onSort) {
+        return this.values;
+      } else {
+        return this.values.slice().sort(function (a, b) {
+          var modifier = 1;
 
-        if (this.currentDir === "desc") {
-          modifier = -1;
-        }
+          if (this.currentDir === "desc") {
+            modifier = -1;
+          }
 
-        if (this.get(a, this.currentSort) < this.get(b, this.currentSort)) {
-          return -1 * modifier;
-        }
+          if (this.get(a, this.currentSort) < this.get(b, this.currentSort)) {
+            return -1 * modifier;
+          }
 
-        if (this.get(a, this.currentSort) > this.get(b, this.currentSort)) {
-          return 1 * modifier;
-        }
+          if (this.get(a, this.currentSort) > this.get(b, this.currentSort)) {
+            return 1 * modifier;
+          }
 
-        return 0;
-      }.bind(this));
+          return 0;
+        }.bind(this));
+      }
     },
     asc: function asc() {
       if (this.ascIcon == "") {
@@ -1203,6 +1219,11 @@ var es6_array_sort = __webpack_require__("55dd");
       }
 
       this.currentSort = s;
+      this.$emit("sort-table", this.currentSort, this.currentDir);
+
+      if (this.onSort) {
+        this.onSort(this.currentSort, this.currentDir);
+      }
     }
   }
 });
@@ -1322,10 +1343,9 @@ var component = normalizeComponent(
   
 )
 
-component.options.__file = "SortedTable.vue"
 /* harmony default export */ var SortedTable = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"cffca526-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortLink.vue?vue&type=template&id=caf9922c&
-var SortLinkvue_type_template_id_caf9922c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('a',{attrs:{"href":"#"},on:{"click":function($event){$event.preventDefault();_vm.$parent.sortBy(_vm.name)}}},[_vm._t("default"),(_vm.$parent.getCurrentSort() == _vm.name)?_c('span',{domProps:{"innerHTML":_vm._s(_vm.$parent.getSortIcon())}}):_vm._e()],2)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortLink.vue?vue&type=template&id=caf9922c&
+var SortLinkvue_type_template_id_caf9922c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('a',{attrs:{"href":"#"},on:{"click":function($event){$event.preventDefault();return _vm.$parent.sortBy(_vm.name)}}},[_vm._t("default"),(_vm.$parent.getCurrentSort() == _vm.name)?_c('span',{domProps:{"innerHTML":_vm._s(_vm.$parent.getSortIcon())}}):_vm._e()],2)}
 var SortLinkvue_type_template_id_caf9922c_staticRenderFns = []
 
 
@@ -1373,7 +1393,6 @@ var SortLink_component = normalizeComponent(
   
 )
 
-SortLink_component.options.__file = "SortLink.vue"
 /* harmony default export */ var SortLink = (SortLink_component.exports);
 // CONCATENATED MODULE: ./src/index.js
 
