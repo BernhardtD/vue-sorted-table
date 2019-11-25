@@ -229,6 +229,8 @@ Property | Required | Default | Description
 | Default | Slot to pass link text.        |
 | Icon    | Slot to use custom sort icons. |
 
+[![Edit vue-sorted-table - icon example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-sorted-table-icon-example-jul4d?fontsize=14&hidenavigation=1&theme=dark)
+
 ### Constraint
 Currently, the `SortLink` component expects to be a child of the `SortedTable` component.
 Adding any other component in between will break the sorting capabilities.
