@@ -223,6 +223,12 @@ Property | Required | Default | Description
 ---------|----------|---------|-------------------------------------------------------
 `name`   |yes       |         |The object key name on which the values will be sorted.
 
+#### Slots
+| Slot    | Description                    |
+|---------|--------------------------------|
+| Default | Slot to pass link text.        |
+| Icon    | Slot to use custom sort icons. |
+
 ### Constraint
 Currently, the `SortLink` component expects to be a child of the `SortedTable` component.
 Adding any other component in between will break the sorting capabilities.

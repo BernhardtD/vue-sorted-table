@@ -698,7 +698,7 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 /***/ "8378":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.5' };
+var core = module.exports = { version: '2.6.10' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -1049,6 +1049,49 @@ module.exports = (
 
 /***/ }),
 
+/***/ "f6fd":
+/***/ (function(module, exports) {
+
+// document.currentScript polyfill by Adam Miller
+
+// MIT license
+
+(function(document){
+  var currentScript = "currentScript",
+      scripts = document.getElementsByTagName('script'); // Live NodeList collection
+
+  // If browser needs currentScript polyfill, add get currentScript() to the document object
+  if (!(currentScript in document)) {
+    Object.defineProperty(document, currentScript, {
+      get: function(){
+
+        // IE 6-10 supports script readyState
+        // IE 10+ support stack trace
+        try { throw new Error(); }
+        catch (err) {
+
+          // Find the second match for the "at" string to get file src url from stack.
+          // Specifically works with the format of stack traces in IE.
+          var i, res = ((/.*at [^\(]*\((.*):.+:.+\)$/ig).exec(err.stack) || [false])[1];
+
+          // For all scripts on the page, if src matches or if ready state is interactive, return the script tag
+          for(i in scripts){
+            if(scripts[i].src == res || scripts[i].readyState == "interactive"){
+              return scripts[i];
+            }
+          }
+
+          // If no match, return null
+          return null;
+        }
+      }
+    });
+  }
+})(document);
+
+
+/***/ }),
+
 /***/ "fa5b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1076,6 +1119,10 @@ __webpack_require__.r(__webpack_exports__);
 // This file is imported into lib/wc client bundles.
 
 if (typeof window !== 'undefined') {
+  if (true) {
+    __webpack_require__("f6fd")
+  }
+
   var i
   if ((i = window.document.currentScript) && (i = i.src.match(/(.+\/)[^/]+\.js(\?.*)?$/))) {
     __webpack_require__.p = i[1] // eslint-disable-line
@@ -1088,7 +1135,7 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortedTable.vue?vue&type=template&id=e336eb94&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2be21e28-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortedTable.vue?vue&type=template&id=e336eb94&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('table',{staticClass:"table"},[_vm._t("default"),_vm._t("head"),_vm._t("body",null,{"values":_vm.sortedValues}),_vm._t("foot")],2)}
 var staticRenderFns = []
 
@@ -1344,14 +1391,16 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var SortedTable = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortLink.vue?vue&type=template&id=caf9922c&
-var SortLinkvue_type_template_id_caf9922c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('a',{attrs:{"href":"#"},on:{"click":function($event){$event.preventDefault();return _vm.$parent.sortBy(_vm.name)}}},[_vm._t("default"),(_vm.$parent.getCurrentSort() == _vm.name)?_c('span',{domProps:{"innerHTML":_vm._s(_vm.$parent.getSortIcon())}}):_vm._e()],2)}
-var SortLinkvue_type_template_id_caf9922c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2be21e28-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortLink.vue?vue&type=template&id=0fd6b103&
+var SortLinkvue_type_template_id_0fd6b103_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('a',{attrs:{"href":"#"},on:{"click":function($event){$event.preventDefault();return _vm.$parent.sortBy(_vm.name)}}},[_vm._t("default",[_vm._v(_vm._s(_vm.name))]),_vm._t("icon",[(_vm.$parent.getCurrentSort() == _vm.name)?_c('span',{domProps:{"innerHTML":_vm._s(_vm.$parent.getSortIcon())}}):_vm._e()])],2)}
+var SortLinkvue_type_template_id_0fd6b103_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SortLink.vue?vue&type=template&id=caf9922c&
+// CONCATENATED MODULE: ./src/components/SortLink.vue?vue&type=template&id=0fd6b103&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SortLink.vue?vue&type=script&lang=js&
+//
+//
 //
 //
 //
@@ -1384,8 +1433,8 @@ var SortLinkvue_type_template_id_caf9922c_staticRenderFns = []
 
 var SortLink_component = normalizeComponent(
   components_SortLinkvue_type_script_lang_js_,
-  SortLinkvue_type_template_id_caf9922c_render,
-  SortLinkvue_type_template_id_caf9922c_staticRenderFns,
+  SortLinkvue_type_template_id_0fd6b103_render,
+  SortLinkvue_type_template_id_0fd6b103_staticRenderFns,
   false,
   null,
   null,

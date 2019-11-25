@@ -1,10 +1,12 @@
 <template>
   <a href="#" @click.prevent="$parent.sortBy(name)">
-    <slot></slot>
-    <span
-      v-if="$parent.getCurrentSort() == name"
-      v-html="$parent.getSortIcon()"
-    ></span>
+    <slot>{{ name }}</slot>
+    <slot name="icon">
+      <span
+        v-if="$parent.getCurrentSort() == name"
+        v-html="$parent.getSortIcon()"
+      ></span>
+    </slot>
   </a>
 </template>
 
