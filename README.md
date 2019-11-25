@@ -25,17 +25,17 @@ The basic example shows how to use the `SortedTable` and `SortLink` components:
 ```html
 <template>
   <div id="app">
-    <SortedTable :values="values">
+    <sorted-table :values="values">
       <thead>
         <tr>
           <th scope="col" style="text-align: left; width: 10rem;">
-            <SortLink name="id">ID</SortLink>
+            <sort-link name="id">ID</sort-link>
           </th>
           <th scope="col" style="text-align: left; width: 10rem;">
-            <SortLink name="name">Name</SortLink>
+            <sort-link name="name">Name</sort-link>
           </th>
           <th scope="col" style="text-align: left; width: 10rem;">
-            <SortLink name="hits">Hits</SortLink>
+            <sort-link name="hits">Hits</sort-link>
           </th>
         </tr>
       </thead>
@@ -46,7 +46,7 @@ The basic example shows how to use the `SortedTable` and `SortLink` components:
           <td>{{ value.hits }}</td>
         </tr>
       </tbody>
-    </SortedTable>
+    </sorted-table>
   </div>
 </template>
 
@@ -66,23 +66,24 @@ export default {
 </script>
 ```
 
-The `SortedTable` tag requires a `values` property, which is an array of objects which contain the data:
+The `sorted-table` tag requires a `values` property, which is an array of objects which contain the data:
 ```html
-<SortedTable :values="values">
-</SortedTable>
+<sorted-table :values="values">
+</sorted-table>
 ```
 
-The `SortLink` tag adds a link to sort the provided data. In the case the `name` property value is the current
+The `sort-link` tag adds a link to sort the provided data. In the case the `name` property value is the current
 sorting, the component adds a sort icon, depending on the actual order:
 ```html
-<SortLink name="id">ID</SortLink>
+<sort-link name="id">ID</sort-link>
 ```
 
 The sorted data is made accessible as a [scoped slot](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots).
-Therefore the `tbody` tag is served as part of the `body` slot and has the slot scope `sort`:
 ```html
-<tbody slot="body" slot-scope="sort">
-</tbody>
+<template #body="sort">
+  <tbody>
+  </tbody>
+</template>
 ```
 
 Now we can access the slot scope via `sort` and iterate over the sorted values to render the data:
@@ -128,7 +129,7 @@ Vue.prototype.$_ = _;
 
 Add sort link using the nested key:
 ```html
-<SortLink name="user.name">Username</SortLink>
+<sort-link name="user.name">Username</sort-link>
 ```
 
 Extend `v-for` loop to render nested value:
@@ -168,13 +169,13 @@ export default {
 
 Add sort icons as property of the `SortedTable` tag:
 ```html
-<SortedTable
+<sorted-table
   :values="values"
   ascIcon="<span> ▲</span>"
   descIcon="<span> ▼</span>"
 >
   <!-- .. -->
-</SortedTable>
+</sorted-table>
 ```
 
 [![Edit vue-sorted-table - component example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/6139y2xo53?module=%2Fsrc%2FApp.vue)
