@@ -114,6 +114,13 @@ export default {
         this.onSort(this.currentSort, this.currentDir);
       }
     }
+  },
+  provide: function() {
+    return {
+      getCurrentSort: this.getCurrentSort,
+      getSortIcon: this.getSortIcon,
+      sortBy: this.sortBy
+    };
   }
 };
 </script>

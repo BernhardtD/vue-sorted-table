@@ -1,11 +1,8 @@
 <template>
-  <a href="#" @click.prevent="$parent.sortBy(name)">
+  <a href="#" @click.prevent="sortBy(name)">
     <slot>{{ name }}</slot>
     <slot name="icon">
-      <span
-        v-if="$parent.getCurrentSort() == name"
-        v-html="$parent.getSortIcon()"
-      ></span>
+      <span v-if="getCurrentSort() == name" v-html="getSortIcon()" />
     </slot>
   </a>
 </template>
@@ -19,6 +16,7 @@ export default {
       required: true,
       default: ""
     }
-  }
+  },
+  inject: ["getCurrentSort", "getSortIcon", "sortBy"]
 };
 </script>
