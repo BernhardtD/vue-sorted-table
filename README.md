@@ -39,8 +39,8 @@ The basic example shows how to use the `SortedTable` and `SortLink` components:
           </th>
         </tr>
       </thead>
-      <tbody slot="body" slot-scope="sort">
-        <tr v-for="value in sort.values" :key="value.id">
+      <tbody #body="{ values }">
+        <tr v-for="value in values" :key="value.id">
           <td>{{ value.id }}</td>
           <td>{{ value.name }}</td>
           <td>{{ value.hits }}</td>
