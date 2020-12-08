@@ -19,6 +19,15 @@ import SortedTablePlugin from "vue-sorted-table";
 Vue.use(SortedTablePlugin);
 ```
 
+Or, using Vue:
+
+```javascript
+buildModules: [
+  // ...
+  'vue-sorted-table/nuxt'
+]
+```
+
 ## Examples
 ### Basic
 The basic example shows how to use the `SortedTable` and `SortLink` components:
