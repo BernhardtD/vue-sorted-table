@@ -10,13 +10,13 @@
 <script>
 export default {
   name: "SortLink",
+  inject: ["getCurrentSort", "getSortIcon", "sortBy"],
   props: {
     name: {
       type: String,
       required: true,
       default: ""
     }
-  },
-  inject: ["getCurrentSort", "getSortIcon", "sortBy"]
+  }
 };
 </script>

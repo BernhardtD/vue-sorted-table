@@ -10,6 +10,13 @@
 <script>
 export default {
   name: "SortedTable",
+  provide: function() {
+    return {
+      getCurrentSort: this.getCurrentSort,
+      getSortIcon: this.getSortIcon,
+      sortBy: this.sortBy
+    };
+  },
   props: {
     values: {
       type: Array,
@@ -114,13 +121,6 @@ export default {
         this.onSort(this.currentSort, this.currentDir);
       }
     }
-  },
-  provide: function() {
-    return {
-      getCurrentSort: this.getCurrentSort,
-      getSortIcon: this.getSortIcon,
-      sortBy: this.sortBy
-    };
   }
 };
 </script>

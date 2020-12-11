@@ -27,18 +27,20 @@
     "*.js"
   ],
   "dependencies": {
-    "vue": "^2.6.8"
+    "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@vue/cli": "^3.5.0",
-    "@vue/cli-plugin-babel": "^3.5.0",
-    "@vue/cli-plugin-eslint": "^3.5.0",
-    "@vue/cli-service": "^3.5.0",
-    "@vue/eslint-config-prettier": "^4.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0-0",
-    "vue-template-compiler": "^2.5.17"
+    "@vue/cli": "^4.5.9",
+    "@vue/cli-plugin-babel": "^4.5.9",
+    "@vue/cli-plugin-eslint": "^4.5.9",
+    "@vue/cli-service": "^4.5.9",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-vue": "^7.2.0",
+    "prettier": "^1.13.0",
+    "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
     "root": true,
