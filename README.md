@@ -19,6 +19,15 @@ import SortedTablePlugin from "vue-sorted-table";
 Vue.use(SortedTablePlugin);
 ```
 
+Or, using Vue:
+
+```javascript
+buildModules: [
+  // ...
+  'vue-sorted-table/nuxt'
+]
+```
+
 ## Examples
 ### Basic
 The basic example shows how to use the `SortedTable` and `SortLink` components:
@@ -39,8 +48,8 @@ The basic example shows how to use the `SortedTable` and `SortLink` components:
           </th>
         </tr>
       </thead>
-      <tbody slot="body" slot-scope="sort">
-        <tr v-for="value in sort.values" :key="value.id">
+      <tbody #body="{ values }">
+        <tr v-for="value in values" :key="value.id">
           <td>{{ value.id }}</td>
           <td>{{ value.name }}</td>
           <td>{{ value.hits }}</td>
@@ -230,7 +239,3 @@ Property | Required | Default | Description
 | Icon    | Slot to use custom sort icons. |
 
 [![Edit vue-sorted-table - icon example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-sorted-table-icon-example-jul4d?fontsize=14&hidenavigation=1&theme=dark)
-
-### Constraint
-Currently, the `SortLink` component expects to be a child of the `SortedTable` component.
-Adding any other component in between will break the sorting capabilities.
